@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface Mapper<M, D> {
 
-    List<D> toDtoList(List<M> model);
+    List<D> toDtoList(List<M> modelList);
 
     D toDto(M model);
 }

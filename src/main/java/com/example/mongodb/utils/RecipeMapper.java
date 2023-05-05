@@ -14,7 +14,6 @@ public class RecipeMapper implements Mapper<Recipe, RecipeResponse> {
         return recipes.stream().map(this::toDto).collect(Collectors.toList());
     }
 
-    @Override
     public RecipeResponse toDto(Recipe recipe) {
         return new RecipeResponse(recipe.getName(), recipe.getDescription());
     }

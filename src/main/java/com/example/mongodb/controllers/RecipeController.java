@@ -6,10 +6,7 @@ import com.example.mongodb.services.RecipeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,12 +22,15 @@ public class RecipeController {
 
     @GetMapping("/create")
     public String create(ModelMap model) {
+        model.addAttribute("recipe",new RecipeRequest());
         return "createRecipe";
     }
 
     @PostMapping("/create")
-    public String save(@RequestBody RecipeRequest recipeRequest) {
-        recipeService.saveRecipe(recipeRequest);
+    public String recipeSubmit(@ModelAttribute RecipeRequest recipe, Model model) {
+        recipeService.saveRecipe(recipe);
+        List<RecipeResponse> recipes = recipeService.getAll();
+        model.addAttribute("recipes", recipes);
         return "recipes";
     }
 

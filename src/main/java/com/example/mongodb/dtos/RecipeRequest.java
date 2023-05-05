@@ -2,13 +2,15 @@ package com.example.mongodb.dtos;
 
 public class RecipeRequest {
 
-    String name;
-    String description;
+    private String name;
+    private String description;
 
     public RecipeRequest(String name, String description) {
         this.name = name;
         this.description = description;
     }
+
+    public RecipeRequest() {}
 
     public String getName() {
         return name;
